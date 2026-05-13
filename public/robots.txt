@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# lohit.xyz — Dinavahi Lohith Sai
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://lohit.xyz/sitemap.xml

@@ -2,27 +2,122 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
+import { SITE_ORIGIN, SOCIALS } from '#/routes/-data/portfolio'
 import appCss from '../styles.css?url'
+
+const PAGE_TITLE =
+  'Dinavahi Lohith Sai — Backend & Systems Developer · lohit.xyz'
+
+const PAGE_DESCRIPTION =
+  'Portfolio of Dinavahi Lohith Sai (King Grey): Go, Rust, TypeScript. Backend, systems, and distributed services — Hashira, TravelID (Polkadot hackathon), Garden stack. Open to SDE-1 backend roles · Vijayawada, India.'
+
+const CANONICAL = `${SITE_ORIGIN}/`
+const OG_IMAGE = `${SITE_ORIGIN}/favicon.svg`
+
+const WEBSITE_ID = `${SITE_ORIGIN}/#website`
+const PERSON_ID = `${SITE_ORIGIN}/#person`
+
+const seoJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': WEBSITE_ID,
+      url: CANONICAL,
+      name: PAGE_TITLE,
+      alternateName: ['lohit.xyz', 'Dinavahi Lohith Sai Portfolio'],
+      description: PAGE_DESCRIPTION,
+      inLanguage: 'en-IN',
+      publisher: { '@id': PERSON_ID },
+    },
+    {
+      '@type': 'Person',
+      '@id': PERSON_ID,
+      name: 'Dinavahi Lohith Sai',
+      alternateName: ['King Grey', 'Lohith Sai'],
+      url: CANONICAL,
+      description: PAGE_DESCRIPTION,
+      jobTitle: 'Fullstack & Systems Developer',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Hashira Works',
+        url: 'https://hashira.io',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Vijayawada',
+        addressRegion: 'Andhra Pradesh',
+        addressCountry: 'IN',
+      },
+      sameAs: [...new Set(SOCIALS.map(({ href }) => href))],
+      knowsAbout: [
+        'Go',
+        'Rust',
+        'TypeScript',
+        'Backend engineering',
+        'Distributed systems',
+        'Polkadot',
+        'PostgreSQL',
+      ],
+      mainEntityOfPage: { '@id': WEBSITE_ID },
+    },
+  ],
+}
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Dinavahi Lohith Sai' },
-      { name: 'description', content: 'Fullstack & Systems Developer — Go, Rust, TypeScript. Based in Vijayawada, India.' },
+      {
+        name: 'viewport',
+        content:
+          'width=device-width, initial-scale=1, viewport-fit=cover',
+      },
+      { title: PAGE_TITLE },
+      { name: 'description', content: PAGE_DESCRIPTION },
+      { name: 'application-name', content: 'lohit.xyz' },
+      { name: 'author', content: 'Dinavahi Lohith Sai' },
+      { name: 'publisher', content: 'Dinavahi Lohith Sai' },
+      { name: 'robots', content: 'index, follow, max-image-preview:large' },
+      {
+        name: 'googlebot',
+        content: 'index, follow, max-image-preview:large, max-snippet:-1',
+      },
+      { name: 'theme-color', content: '#0d0d0b' },
+      { name: 'color-scheme', content: 'dark' },
+      { name: 'geo.region', content: 'IN-AP' },
+      { name: 'geo.placename', content: 'Vijayawada' },
+      { name: 'referrer', content: 'strict-origin-when-cross-origin' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:locale', content: 'en_IN' },
+      { property: 'og:site_name', content: 'lohit.xyz' },
+      { property: 'og:title', content: PAGE_TITLE },
+      { property: 'og:description', content: PAGE_DESCRIPTION },
+      { property: 'og:url', content: CANONICAL },
+      { property: 'og:image', content: OG_IMAGE },
+      { property: 'og:image:alt', content: 'lohit.xyz — portfolio mark' },
+      { property: 'og:image:type', content: 'image/svg+xml' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: PAGE_TITLE },
+      { name: 'twitter:description', content: PAGE_DESCRIPTION },
+      { name: 'twitter:image', content: OG_IMAGE },
+      { name: 'twitter:image:alt', content: 'lohit.xyz — portfolio mark' },
     ],
     links: [
+      { rel: 'canonical', href: CANONICAL },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
+      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap',
       },
-			{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-			{ rel: 'apple-touch-icon', href: '/favicon.svg' },
-			{ rel: 'mask-icon', href: '/favicon.svg', color: '#ede9e0' },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'apple-touch-icon', href: '/favicon.svg' },
+      { rel: 'mask-icon', href: '/favicon.svg', color: '#ede9e0' },
       { rel: 'manifest', href: '/manifest.json' },
       { rel: 'stylesheet', href: appCss },
     ],
@@ -32,9 +127,15 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(seoJsonLd),
+          }}
+        />
       </head>
       <body>
         {children}

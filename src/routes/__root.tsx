@@ -6,13 +6,15 @@ import { SITE_ORIGIN, SOCIALS } from '#/routes/-data/portfolio'
 import appCss from '../styles.css?url'
 
 const PAGE_TITLE =
-  'Dinavahi Lohith Sai — Backend & Systems Developer · lohit.xyz'
+  'Dinavahi Lohith Sai — Backend engineer · lohit.xyz'
 
 const PAGE_DESCRIPTION =
-  'Portfolio of Dinavahi Lohith Sai (King Grey): Go, Rust, TypeScript. Backend, systems, and distributed services — Hashira, TravelID (Polkadot hackathon), Garden stack. Open to SDE-1 backend roles · Vijayawada, India.'
+  'Go, Rust, TypeScript backend — Hashira, TravelID (Polkadot). SDE-1 roles · Vijayawada, IN.'
 
 const CANONICAL = `${SITE_ORIGIN}/`
-const OG_IMAGE = `${SITE_ORIGIN}/favicon.svg`
+const OG_IMAGE = `${SITE_ORIGIN}/og.png`
+const OG_IMAGE_W = '1200'
+const OG_IMAGE_H = '630'
 
 const WEBSITE_ID = `${SITE_ORIGIN}/#website`
 const PERSON_ID = `${SITE_ORIGIN}/#person`
@@ -37,7 +39,7 @@ const seoJsonLd = {
       alternateName: ['King Grey', 'Lohith Sai'],
       url: CANONICAL,
       description: PAGE_DESCRIPTION,
-      jobTitle: 'Fullstack & Systems Developer',
+      jobTitle: 'Backend & Systems Developer',
       worksFor: {
         '@type': 'Organization',
         name: 'Hashira Works',
@@ -95,15 +97,20 @@ export const Route = createRootRoute({
       { property: 'og:description', content: PAGE_DESCRIPTION },
       { property: 'og:url', content: CANONICAL },
       { property: 'og:image', content: OG_IMAGE },
-      { property: 'og:image:alt', content: 'lohit.xyz — portfolio mark' },
-      { property: 'og:image:type', content: 'image/svg+xml' },
-      { name: 'twitter:card', content: 'summary' },
+      { property: 'og:image:secure_url', content: OG_IMAGE },
+      { property: 'og:image:width', content: OG_IMAGE_W },
+      { property: 'og:image:height', content: OG_IMAGE_H },
+      { property: 'og:image:alt', content: 'Dinavahi Lohith Sai — Backend developer, lohit.xyz' },
+      { property: 'og:image:type', content: 'image/png' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: PAGE_TITLE },
       { name: 'twitter:description', content: PAGE_DESCRIPTION },
+      { name: 'twitter:url', content: CANONICAL },
       { name: 'twitter:image', content: OG_IMAGE },
-      { name: 'twitter:image:alt', content: 'lohit.xyz — portfolio mark' },
+      { name: 'twitter:image:alt', content: 'Dinavahi Lohith Sai — Backend developer, lohit.xyz' },
     ],
     links: [
+      { rel: 'image_src', href: OG_IMAGE },
       { rel: 'canonical', href: CANONICAL },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       {

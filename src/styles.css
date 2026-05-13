@@ -70,6 +70,116 @@ body::before {
   background-size: 180px;
 }
 
+/* left-click ripple — warm accent rings (inspired by cursor-click demos on portfolio sites like sathvik-portfolio.pages.dev) */
+.click-burst-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+  contain: strict;
+}
+.click-burst-anchor {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+}
+.click-burst-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 184, 154, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(13, 13, 11, 0.35),
+    0 0 12px rgba(200, 184, 154, 0.12);
+  transform: scale(0.45);
+  animation: clickRingOut 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.click-burst-ring--delayed {
+  margin: -9px 0 0 -9px;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(138, 122, 100, 0.35);
+  animation-delay: 0.038s;
+  animation-duration: 0.72s;
+  box-shadow: none;
+}
+.click-burst-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: rgba(237, 233, 224, 0.95);
+  animation: clickCore 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.click-burst-cross {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: -12px;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  animation: clickCrossFade 0.54s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.click-burst-cross::before,
+.click-burst-cross::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: rgba(200, 184, 154, 0.42);
+}
+.click-burst-cross::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.click-burst-cross::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes clickRingOut {
+  to {
+    transform: scale(11);
+    opacity: 0;
+  }
+}
+
+@keyframes clickCore {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes clickCrossFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  12% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
 /* ─── nav ─── */
 .nav {
   position: sticky;
@@ -336,6 +446,43 @@ body::before {
   color: var(--accent);
   display: block;
 }
+
+.hero-kicker {
+  margin-top: clamp(16px, 3vw, 26px);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em 0.5em;
+  max-width: 36em;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--muted);
+  opacity: 0;
+  animation: up 0.68s 0.38s forwards;
+}
+.hero-kicker-aka {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+.hero-kicker-name {
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  font-size: clamp(17px, 2.2vw, 20px);
+  color: var(--accent);
+}
+.hero-kicker-dot {
+  color: var(--subtle);
+  user-select: none;
+}
+.hero-kicker-exp {
+  flex: 0 1 auto;
+  color: var(--muted);
+}
+
 .hero-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1010,6 +1157,9 @@ body::before {
     opacity: 1;
     transform: none;
   }
+  .click-burst-root {
+    display: none !important;
+  }
 }
 
 /* ─── responsive ─── */
@@ -1077,6 +1227,10 @@ body::before {
   .hero-center {
     max-width: 100%;
     padding: 24px 0 40px;
+  }
+  .hero-kicker {
+    margin-top: 18px;
+    font-size: 12.5px;
   }
   .hero-main,
   .work,

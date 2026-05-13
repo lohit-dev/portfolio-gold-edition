@@ -336,10 +336,77 @@ function onCardPointerMove(e: React.PointerEvent<HTMLElement>) {
 	card.style.setProperty("--my", `${e.clientY - rect.top}px`)
 }
 
+type ClickBurst = { id: number; x: number; y: number }
+
+function ClickBurstLayer() {
+	const [bursts, setBursts] = useState<ClickBurst[]>([])
+	const nextId = useRef(0)
+
+	useEffect(() => {
+		if (typeof window === "undefined") return
+		if (prefersReducedMotion()) return
+
+		const skipForTarget = (el: Element | null) => {
+			if (!el?.closest) return false
+			if (el.closest("[data-no-click-fx]")) return true
+			if (el.closest("textarea, select")) return true
+			const inp = el.closest("input")
+			if (inp instanceof HTMLInputElement) {
+				const t = inp.type
+				if (
+					["text", "search", "email", "password", "url", "tel", "number"].includes(t)
+				)
+					return true
+			}
+			return false
+		}
+
+		const onPointerDown = (e: PointerEvent) => {
+			if (e.button !== 0) return
+			let n: Node | null = e.target as Node | null
+			while (n && n.nodeType !== Node.ELEMENT_NODE) {
+				n = n.parentNode
+			}
+			const el = n instanceof Element ? n : null
+			if (skipForTarget(el)) return
+
+			const id = ++nextId.current
+			setBursts((prev) => [...prev.slice(-14), { id, x: e.clientX, y: e.clientY }])
+			window.setTimeout(() => {
+				setBursts((prev) => prev.filter((b) => b.id !== id))
+			}, 720)
+		}
+
+		window.addEventListener("pointerdown", onPointerDown, { capture: true })
+		return () =>
+			window.removeEventListener("pointerdown", onPointerDown, {
+				capture: true,
+			})
+	}, [])
+
+	return (
+		<div className="click-burst-root" aria-hidden>
+			{bursts.map((b) => (
+				<div
+					key={b.id}
+					className="click-burst-anchor"
+					style={{ left: b.x, top: b.y }}
+				>
+					<span className="click-burst-ring" />
+					<span className="click-burst-ring click-burst-ring--delayed" />
+					<span className="click-burst-dot" />
+					<span className="click-burst-cross" aria-hidden />
+				</div>
+			))}
+		</div>
+	)
+}
+
 function Home() {
 	const ghostRef = useHeroParallax()
 	return (
 		<div className="page" id="top">
+			<ClickBurstLayer />
 			<nav className="nav">
 				<div className="nav-pill">
 					<a className="nav-brand" href="#top" aria-label="lohit. — home">
@@ -393,6 +460,16 @@ function Home() {
 							<br />
 							<em>Lohith Sai</em>
 						</h1>
+						<p className="hero-kicker">
+							<span className="hero-kicker-aka">a.k.a.</span>{" "}
+							<span className="hero-kicker-name">King Grey</span>
+							<span className="hero-kicker-dot" aria-hidden="true">
+								&nbsp;·&nbsp;
+							</span>
+							<span className="hero-kicker-exp">
+								1.5+ yrs production experience
+							</span>
+						</p>
 					</div>
 				</div>
 				<div className="hero-bottom">

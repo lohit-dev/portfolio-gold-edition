@@ -1,4 +1,4 @@
-import { Logo } from "#/routes/-ui/Logo"
+import { Logo } from "#/routes/-ui/Logo";
 
 export function Nav() {
 	return (
@@ -22,5 +22,5 @@ export function Nav() {
 				</div>
 			</div>
 		</nav>
-	)
+	);
 }

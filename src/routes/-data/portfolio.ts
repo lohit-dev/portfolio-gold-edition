@@ -129,14 +129,14 @@ export const SKILLS: SkillChip[] = [
 ]
 
 export const INTERESTS = [
-	"Re:Zero",
-	"No Game No Life",
-	"Maid-sama",
-	"light novels",
-	"manga",
-	"Resident Evil",
-	"Neovim",
-	"Japanese (learning)",
+	"Watching anime 📺",
+	"Reading manga 📚",
+	"Sleep (a lot) 😴",
+	"PC games 🎮",
+	"Vim keybindings ✌️",
+	"Music all day 🎧",
+	"Reading (rare) 📖",
+	"Phone 📱",
 ]
 
 export const SETUP: Array<[string, string]> = [

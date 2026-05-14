@@ -42,7 +42,6 @@ export const PROJECTS: Project[] = [
 		],
 		href: TRAVELID_HACKATHON_REPO_URL,
 		span: "wide",
-		minHeight: 280,
 	},
 	{
 		idx: "002",
@@ -56,14 +55,12 @@ export const PROJECTS: Project[] = [
 		],
 		kicker: "In production",
 		span: "tall",
-		minHeight: 500,
 	},
 	{
 		idx: "003",
 		nameLines: ["Garden Analyzer"],
 		desc: "MCP-integrated analytics over Garden.Finance's multi-chain data. Surfaces things like an 82% Q2-vs-Q1 volume drop, 304% new-user growth, and 98% Starknet outbound dominance — without anyone writing a SQL query.",
 		tags: [{ label: "Go" }, { label: "Claude MCP" }, { label: "TypeScript" }],
-		minHeight: 240,
 	},
 	{
 		idx: "004",
@@ -76,7 +73,6 @@ export const PROJECTS: Project[] = [
 			{ label: "AniWatch API" },
 		],
 		span: "wide",
-		minHeight: 200,
 	},
 ]
 

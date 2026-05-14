@@ -38,6 +38,7 @@ export function WorkSection() {
 									}
 								: {})}
 							delay={i * 80}
+							data-idx={p.idx}
 							className={`bc ${p.span === "wide" ? "bc-wide" : ""} ${
 								p.span === "tall" ? "bc-tall" : ""
 							}`.trim()}

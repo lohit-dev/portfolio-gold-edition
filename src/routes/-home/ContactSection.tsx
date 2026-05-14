@@ -1,6 +1,6 @@
-import { SOCIALS } from "#/routes/-data/portfolio"
-import { Reveal } from "#/routes/-ui/Reveal"
-import { SectionLabel } from "#/routes/-home/SectionLabel"
+import { SOCIALS } from "#/routes/-data/portfolio";
+import { SectionLabel } from "#/routes/-home/SectionLabel";
+import { Reveal } from "#/routes/-ui/Reveal";
 
 export function ContactSection() {
 	return (
@@ -42,5 +42,5 @@ export function ContactSection() {
 				</Reveal>
 			</section>
 		</>
-	)
+	);
 }

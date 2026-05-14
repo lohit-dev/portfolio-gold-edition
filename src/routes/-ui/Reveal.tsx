@@ -1,4 +1,4 @@
-import { useReveal } from "#/routes/-hooks/useReveal"
+import { useReveal } from "#/routes/-hooks/useReveal";
 
 export function Reveal({
 	as: Tag = "div",
@@ -7,13 +7,13 @@ export function Reveal({
 	children,
 	...rest
 }: {
-	as?: keyof React.JSX.IntrinsicElements
-	className?: string
-	delay?: number
-	children: React.ReactNode
+	as?: keyof React.JSX.IntrinsicElements;
+	className?: string;
+	delay?: number;
+	children: React.ReactNode;
 } & React.HTMLAttributes<HTMLElement>) {
-	const ref = useReveal<HTMLElement>()
-	const Component = Tag as React.ElementType
+	const ref = useReveal<HTMLElement>();
+	const Component = Tag as React.ElementType;
 	return (
 		<Component
 			ref={ref}
@@ -23,5 +23,5 @@ export function Reveal({
 		>
 			{children}
 		</Component>
-	)
+	);
 }

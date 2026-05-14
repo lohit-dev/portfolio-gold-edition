@@ -1,6 +1,6 @@
-import { EXPERIENCE, SKILLS } from "#/routes/-data/portfolio"
-import { Reveal } from "#/routes/-ui/Reveal"
-import { SectionLabel } from "#/routes/-home/SectionLabel"
+import { EXPERIENCE, SKILLS } from "#/routes/-data/portfolio";
+import { SectionLabel } from "#/routes/-home/SectionLabel";
+import { Reveal } from "#/routes/-ui/Reveal";
 
 export function ExperienceSection() {
 	return (
@@ -16,9 +16,10 @@ export function ExperienceSection() {
 					<p className="exp-lb">
 						A year and a half of backend work, mostly at Hashira on
 						Garden.Finance. Watcher services, on-chain extraction pipelines,
-						Lightning and Spark integrations in Rust, an MCP analytics app, and
-						the bots the team still checks every morning. Wrapped that chapter
-						in April 2026 — open to what's next.
+						Lightning and Spark integrations in Rust, a Discord insight bot over
+						Garden data (OpenClaw — metrics like volume, growth, and route mix,
+						not ad-hoc SQL), and the bots the team still checks every morning.
+						Wrapped that chapter in April 2026 — open to what's next.
 					</p>
 					<div className="skills">
 						{SKILLS.map((s, i) => (
@@ -46,5 +47,5 @@ export function ExperienceSection() {
 				</Reveal>
 			</section>
 		</>
-	)
+	);
 }

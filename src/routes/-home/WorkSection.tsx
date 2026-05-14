@@ -1,12 +1,17 @@
-import { Fragment } from "react"
-import { GITHUB_URL, PROJECTS } from "#/routes/-data/portfolio"
-import { Reveal } from "#/routes/-ui/Reveal"
-import { SectionLabel } from "#/routes/-home/SectionLabel"
+import { Fragment } from "react";
+import { GITHUB_URL, PROJECTS } from "#/routes/-data/portfolio";
+import { SectionLabel } from "#/routes/-home/SectionLabel";
+import { Reveal } from "#/routes/-ui/Reveal";
 
 export function WorkSection() {
 	return (
 		<>
-			<SectionLabel n="01" title="Selected Work" id="work" />
+			<SectionLabel
+				n="01"
+				title="Selected Work"
+				id="work"
+				badge="In production"
+			/>
 			<section className="work">
 				<Reveal className="work-head">
 					<h2 className="work-h">
@@ -34,7 +39,7 @@ export function WorkSection() {
 										href: p.href,
 										target: "_blank",
 										rel: "noreferrer",
-										"aria-label": `${p.nameLines.join(" ")} — open repository`,
+										"aria-label": `${p.nameLines.join(" ")} (opens in new tab)`,
 									}
 								: {})}
 							delay={i * 80}
@@ -44,10 +49,10 @@ export function WorkSection() {
 							}`.trim()}
 							style={p.minHeight ? { minHeight: p.minHeight } : undefined}
 							onPointerMove={(e) => {
-								const card = e.currentTarget
-								const rect = card.getBoundingClientRect()
-								card.style.setProperty("--mx", `${e.clientX - rect.left}px`)
-								card.style.setProperty("--my", `${e.clientY - rect.top}px`)
+								const card = e.currentTarget;
+								const rect = card.getBoundingClientRect();
+								card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+								card.style.setProperty("--my", `${e.clientY - rect.top}px`);
 							}}
 						>
 							<div className="bc-num" aria-hidden="true">
@@ -58,10 +63,9 @@ export function WorkSection() {
 								<span className="bc-arrow">↗</span>
 							</div>
 							<div className="bc-body">
-								{p.kicker ? <div className="bc-kicker">{p.kicker}</div> : null}
 								<div className="bc-name">
 									{p.nameLines.map((line, li) => (
-										<Fragment key={`${p.idx}-n-${li}`}>
+										<Fragment key={`${p.idx}:${line}`}>
 											{li > 0 ? <br /> : null}
 											{line}
 										</Fragment>
@@ -84,5 +88,5 @@ export function WorkSection() {
 				</div>
 			</section>
 		</>
-	)
+	);
 }

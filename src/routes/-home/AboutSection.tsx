@@ -1,6 +1,6 @@
-import { INTERESTS, SETUP } from "#/routes/-data/portfolio"
-import { Reveal } from "#/routes/-ui/Reveal"
-import { SectionLabel } from "#/routes/-home/SectionLabel"
+import { INTERESTS, SETUP } from "#/routes/-data/portfolio";
+import { SectionLabel } from "#/routes/-home/SectionLabel";
+import { Reveal } from "#/routes/-ui/Reveal";
 
 export function AboutSection() {
 	return (
@@ -18,14 +18,14 @@ export function AboutSection() {
 							<p>
 								I'm Lohith, based in Vijayawada. B.Tech in Computer Science
 								&amp; Data Science from NRI Institute of Technology, finished in
-								2026 — Google Developers Club member, first place in our
-								SQL-app competition somewhere along the way.
+								2026 — Google Developers Club member, first place in our SQL-app
+								competition somewhere along the way.
 							</p>
 							<p>
 								Most of my work is backend. Go and Rust for production stuff,
-								Node when the team needs it. On the side I've shipped two
-								React Native apps to the Play Store and a stack of automation
-								bots that I keep telling myself I'll consolidate one day.
+								Node when the team needs it. On the side I've shipped two React
+								Native apps to the Play Store and a stack of automation bots
+								that I keep telling myself I'll consolidate one day.
 							</p>
 							<p>
 								Ran Arch for six months before switching to an M5 Mac. RE2
@@ -59,5 +59,5 @@ export function AboutSection() {
 				</div>
 			</section>
 		</>
-	)
+	);
 }

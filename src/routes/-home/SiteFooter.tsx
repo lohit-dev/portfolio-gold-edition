@@ -1,4 +1,4 @@
-import { Logo } from "#/routes/-ui/Logo"
+import { Logo } from "#/routes/-ui/Logo";
 
 export function SiteFooter() {
 	return (
@@ -11,5 +11,5 @@ export function SiteFooter() {
 			</div>
 			<span className="fr">TanStack Start · Bun · Tailwind</span>
 		</footer>
-	)
+	);
 }

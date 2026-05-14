@@ -1,5 +1,5 @@
-import { useCounter } from "#/routes/-hooks/useCounter"
-import { useInView } from "#/routes/-hooks/useInView"
+import { useCounter } from "#/routes/-hooks/useCounter";
+import { useInView } from "#/routes/-hooks/useInView";
 
 export function Stat({
 	target,
@@ -8,14 +8,14 @@ export function Stat({
 	suffix = "",
 	label,
 }: {
-	target: number
-	decimals?: number
-	prefix?: string
-	suffix?: string
-	label: string
+	target: number;
+	decimals?: number;
+	prefix?: string;
+	suffix?: string;
+	label: string;
 }) {
-	const { ref, inView } = useInView<HTMLDivElement>(0.5)
-	const value = useCounter(target, decimals, 1400, inView)
+	const { ref, inView } = useInView<HTMLDivElement>(0.5);
+	const value = useCounter(target, decimals, 1400, inView);
 	return (
 		<div className="hb-stat" ref={ref}>
 			<div className="hb-stat-n">
@@ -25,5 +25,5 @@ export function Stat({
 			</div>
 			<div className="hb-stat-l">{label}</div>
 		</div>
-	)
+	);
 }

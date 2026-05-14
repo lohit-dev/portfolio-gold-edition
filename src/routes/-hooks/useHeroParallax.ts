@@ -1,26 +1,26 @@
-import { useEffect, useRef } from "react"
-import { prefersReducedMotion } from "#/routes/-lib/motion"
+import { useEffect, useRef } from "react";
+import { prefersReducedMotion } from "#/routes/-lib/motion";
 
 export function useHeroParallax() {
-	const ref = useRef<HTMLDivElement | null>(null)
+	const ref = useRef<HTMLDivElement | null>(null);
 	useEffect(() => {
-		const el = ref.current
-		if (!el || prefersReducedMotion()) return
-		let raf = 0
+		const el = ref.current;
+		if (!el || prefersReducedMotion()) return;
+		let raf = 0;
 		const update = () => {
-			raf = 0
-			const y = window.scrollY
-			if (y > window.innerHeight) return
-			el.style.setProperty("--parallax", `${y * 0.12}px`)
-		}
+			raf = 0;
+			const y = window.scrollY;
+			if (y > window.innerHeight) return;
+			el.style.setProperty("--parallax", `${y * 0.12}px`);
+		};
 		const onScroll = () => {
-			if (!raf) raf = requestAnimationFrame(update)
-		}
-		window.addEventListener("scroll", onScroll, { passive: true })
+			if (!raf) raf = requestAnimationFrame(update);
+		};
+		window.addEventListener("scroll", onScroll, { passive: true });
 		return () => {
-			window.removeEventListener("scroll", onScroll)
-			if (raf) cancelAnimationFrame(raf)
-		}
-	}, [])
-	return ref
+			window.removeEventListener("scroll", onScroll);
+			if (raf) cancelAnimationFrame(raf);
+		};
+	}, []);
+	return ref;
 }

@@ -1,9 +1,9 @@
-import { RESUME_URL } from "#/routes/-data/portfolio"
-import { useHeroParallax } from "#/routes/-hooks/useHeroParallax"
-import { Stat } from "#/routes/-ui/Stat"
+import { RESUME_URL } from "#/routes/-data/portfolio";
+import { useHeroParallax } from "#/routes/-hooks/useHeroParallax";
+import { Stat } from "#/routes/-ui/Stat";
 
 export function HeroSection() {
-	const ghostRef = useHeroParallax()
+	const ghostRef = useHeroParallax();
 
 	return (
 		<section className="hero">
@@ -20,9 +20,7 @@ export function HeroSection() {
 					</div>
 					<div className="hero-meta-r">
 						<span className="hero-meta-dim">Status</span>
-						<span className="hero-meta-mark">
-							Open to SDE-1 backend roles
-						</span>
+						<span className="hero-meta-mark">Open to SDE-1 backend roles</span>
 					</div>
 				</div>
 
@@ -83,5 +81,5 @@ export function HeroSection() {
 				<div className="sc-line" />
 			</div>
 		</section>
-	)
+	);
 }
